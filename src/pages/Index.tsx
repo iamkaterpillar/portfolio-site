@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,9 +6,24 @@ import { Github, Mail, MapPin, Phone, ExternalLink, Code, Palette, Sparkles, Hea
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const fullName = "Kat Fore";
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Typing animation for name
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= fullName.length) {
+        setTypedText(fullName.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 150);
+
+    return () => clearInterval(timer);
   }, []);
 
   const skills = [
@@ -52,11 +66,12 @@ const Index = () => {
             <div className="mb-6 float-animation">
               <Code className="w-16 h-16 mx-auto text-pink-400" />
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold mb-4 glow-text text-white">
-              Kat
+            <h1 className="text-6xl md:text-8xl font-bold mb-4 glow-text text-white min-h-[1.2em]">
+              {typedText}
+              <span className="animate-pulse">|</span>
             </h1>
             <h2 className="text-6xl md:text-8xl font-bold mb-6 gradient-text">
-              Fore
+              
             </h2>
             <div className="flex items-center justify-center mb-6">
               <Sparkles className="w-6 h-6 text-pink-400 mr-2" />
@@ -86,6 +101,14 @@ const Index = () => {
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <Button 
                 className="pulse-glow bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0"
+                onClick={() => window.open('https://iamkaterpillar.xyz', '_blank')}
+              >
+                <ExternalLink className="w-5 h-5 mr-2" />
+                Personal Website
+              </Button>
+              <Button 
+                variant="outline" 
+                className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200"
                 onClick={() => window.open('https://github.com/katharinafore', '_blank')}
               >
                 <Github className="w-5 h-5 mr-2" />
@@ -93,27 +116,11 @@ const Index = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white"
-                onClick={() => window.open('https://iamkaterpillar.xyz', '_blank')}
-              >
-                <ExternalLink className="w-5 h-5 mr-2" />
-                Personal Site
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white"
+                className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200"
                 onClick={() => window.open('https://linkedin.com/in/katharinafore', '_blank')}
               >
                 <Linkedin className="w-5 h-5 mr-2" />
                 LinkedIn
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Heart className="w-5 h-5 mr-2" />
-                Let's Connect
               </Button>
             </div>
           </div>
@@ -172,7 +179,7 @@ const Index = () => {
                     <Button 
                       size="sm" 
                       variant="outline" 
-                      className="border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white"
+                      className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200"
                       onClick={() => window.open(project.github, '_blank')}
                     >
                       <Github className="w-4 h-4 mr-1" />
@@ -253,7 +260,7 @@ const Index = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white text-lg py-6 px-8"
+                className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200 text-lg py-6 px-8"
                 onClick={() => window.open('https://linkedin.com/in/katharinafore', '_blank')}
               >
                 <Linkedin className="w-6 h-6 mr-2" />
