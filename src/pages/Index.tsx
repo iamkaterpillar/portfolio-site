@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -61,14 +62,16 @@ const Index = () => {
       description: "Led development of Bebop - a suite of APIs and crypto trading platform across 12+ EVM chains.",
       tech: ["Product strategy", "Marketing", "UX design", "Crypto"],
       github: "https://github.com/bebop-dex",
-      demo: "https://bebop.xyz/"
+      demo: "https://bebop.xyz/",
+      image: "/lovable-uploads/c31ec16d-0590-4378-bc9a-0a8fbff473bd.png"
     },
     {
       title: "Personal website",
       description: "Created my own website and blog using AI Agents in Cursor to document my learnings.",
       tech: ["AI Agents", "Blog", "Website Development"],
       github: "https://github.com/iamkaterpillar/my-website",
-      demo: "https://www.iamkaterpillar.xyz/"
+      demo: "https://www.iamkaterpillar.xyz/",
+      image: "/lovable-uploads/ddfd63c9-c082-406f-b278-75c03b4c1da3.png"
     }
   ];
 
@@ -192,13 +195,23 @@ const Index = () => {
           <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
             Featured Projects
           </h3>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {projects.map((project, index) => (
               <Card 
                 key={project.title} 
-                className="card-gradient border-pink-400/20 hover:border-pink-400/40 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20"
+                className="card-gradient border-pink-400/20 hover:border-pink-400/40 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20 overflow-hidden"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
+                {project.image && (
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  </div>
+                )}
                 <CardHeader>
                   <CardTitle className="text-pink-200">{project.title}</CardTitle>
                   <CardDescription className="text-gray-300">
