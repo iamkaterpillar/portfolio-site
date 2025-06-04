@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -147,48 +146,6 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Skills Section */}
-      <div className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
-            Skills & Expertise
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {skills.map((skill, index) => (
-              <Badge 
-                key={skill} 
-                variant="secondary" 
-                className="text-sm py-2 px-4 bg-white/90 text-gray-900 border border-pink-400/30 hover:bg-pink-50 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 font-medium"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {skill}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Tools & Platforms Section */}
-      <div className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
-            Tools & Platforms
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {tools.map((tool, index) => (
-              <Badge 
-                key={tool} 
-                variant="outline" 
-                className="text-sm py-2 px-4 bg-purple-100/90 text-purple-900 border border-purple-400/50 hover:bg-purple-200/90 hover:border-purple-500/60 transition-all duration-300 hover:scale-105 font-medium"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {tool}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Projects Section */}
       <div className="py-20 relative">
         <div className="container mx-auto px-6">
@@ -247,6 +204,48 @@ const Index = () => {
                   </div>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Skills Section */}
+      <div className="py-20 relative">
+        <div className="container mx-auto px-6">
+          <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
+            Skills & Expertise
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {skills.map((skill, index) => (
+              <Badge 
+                key={skill} 
+                variant="secondary" 
+                className="text-sm py-2 px-4 bg-white/90 text-gray-900 border border-pink-400/30 hover:bg-pink-50 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 font-medium"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {skill}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Tools & Platforms Section */}
+      <div className="py-20 relative">
+        <div className="container mx-auto px-6">
+          <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
+            Tools & Platforms
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {tools.map((tool, index) => (
+              <Badge 
+                key={tool} 
+                variant="outline" 
+                className="text-sm py-2 px-4 bg-purple-100/90 text-purple-900 border border-purple-400/50 hover:bg-purple-200/90 hover:border-purple-500/60 transition-all duration-300 hover:scale-105 font-medium"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {tool}
+              </Badge>
             ))}
           </div>
         </div>
