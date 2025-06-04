@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -58,16 +57,16 @@ const Index = () => {
 
   const projects = [
     {
-      title: "Bebop (DEX aggregator)",
+      title: "Bebop (liquidity aggregator)",
       description: "Led development of Bebop - a suite of APIs and crypto trading platform across 12+ EVM chains.",
-      tech: ["Product strategy", "UX design", "crypto"],
+      tech: ["Product strategy", "Marketing", "UX design", "Crypto"],
       github: "https://github.com/bebop-dex",
       demo: "https://bebop.xyz/"
     },
     {
       title: "Personal website",
       description: "Created my own website and blog using AI Agents in Cursor to document my learnings.",
-      tech: ["AI Agents", "Blog", "Crypto", "Website Development"],
+      tech: ["AI Agents", "Blog", "Website Development"],
       github: "https://github.com/iamkaterpillar/my-website",
       demo: "https://www.iamkaterpillar.xyz/"
     }
