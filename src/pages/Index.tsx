@@ -1,13 +1,17 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Github, Mail, MapPin, Phone, ExternalLink, Code, Palette, Sparkles, Heart, Linkedin } from "lucide-react";
+import { Github, Mail, MapPin, ExternalLink, Code, Sparkles, Heart, Linkedin, Check } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState("");
+  const [emailCopied, setEmailCopied] = useState(false);
   const fullName = "Kat Fore";
+  const { toast } = useToast();
 
   useEffect(() => {
     setIsVisible(true);
@@ -26,33 +30,46 @@ const Index = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("katharinajfore@gmail.com");
+      setEmailCopied(true);
+      toast({
+        title: "Email copied!",
+        description: "katharinajfore@gmail.com has been copied to your clipboard.",
+      });
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
+
   const skills = [
-    "Product Management", "Crypto", "DeFi", "UX/UI Design", "Strategy", 
-    "Analytics", "Roadmapping", "A/B Testing", "User Research", "SQL",
-    "Figma", "Data Analysis", "Agile", "Stakeholder Management"
+    "Product Management", "UX/UI Design", "Roadmap Prioritization", "Cross-functional Collaboration", 
+    "Agile", "Crypto", "DeFi", "Stakeholder Management", "User Research", "Operations", 
+    "Marketing", "Newsletters", "Analytics", "SQL", "Data Analysis", "Figma", "Dune Analytics"
+  ];
+
+  const tools = [
+    "Jira", "Confluence", "PostHog", "Hotjar", "Grafana", "Google Analytics", "DBeaver", 
+    "BeeKeeper Studio", "GitHub", "Notion", "Slack", "Intercom", "Discord", 
+    "Blockchain Explorers", "Dune", "Cursor", "Beehiiv", "GitBook", "Figma", "Canva", "Sora"
   ];
 
   const projects = [
     {
-      title: "DeFi Trading Platform",
-      description: "Led product development for institutional crypto trading platform serving $1B+ in daily volume. Focused on latency optimization and user experience.",
-      tech: ["Product Strategy", "UX Design", "Analytics", "Crypto"],
-      github: "#",
-      demo: "#"
+      title: "Bebop (DEX aggregator)",
+      description: "Led development of Bebop - a suite of APIs and crypto trading platform across 12+ EVM chains.",
+      tech: ["Product strategy", "UX design", "crypto"],
+      github: "https://github.com/bebop-dex",
+      demo: "https://bebop.xyz/"
     },
     {
-      title: "Market Making Dashboard",
-      description: "Designed and launched real-time monitoring dashboard for market makers. Reduced operational overhead by 40% through improved workflow automation.",
-      tech: ["Product Management", "Dashboard Design", "Analytics", "Trading"],
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "Crypto Portfolio App",
-      description: "Product lead for portfolio tracking application with 10k+ active users. Implemented AI-powered insights and cross-chain asset tracking.",
-      tech: ["Product Strategy", "AI Integration", "Mobile UX", "Blockchain"],
-      github: "#",
-      demo: "#"
+      title: "Personal website",
+      description: "Created my own website and blog using AI Agents in Cursor to document my learnings.",
+      tech: ["AI Agents", "Blog", "Crypto", "Website Development"],
+      github: "https://github.com/iamkaterpillar/my-website",
+      demo: "https://www.iamkaterpillar.xyz/"
     }
   ];
 
@@ -70,9 +87,6 @@ const Index = () => {
               {typedText}
               <span className="animate-pulse">|</span>
             </h1>
-            <h2 className="text-6xl md:text-8xl font-bold mb-6 gradient-text">
-              
-            </h2>
             <div className="flex items-center justify-center mb-6">
               <Sparkles className="w-6 h-6 text-pink-400 mr-2" />
               <p className="text-2xl md:text-3xl text-pink-300 font-light">
@@ -82,7 +96,7 @@ const Index = () => {
             </div>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
               Crypto-native PM with 4+ years at Bebop & Wintermute. Ex-consultant with an MBA from LBS. 
-              Focused on fast execution, clean UX, and scaling great products. Exploring crypto, AI, and design.
+              Focused on fast execution, clean UX, and scaling great products. Exploring the future of finance across DeFi, real-world assets, and language models.
             </p>
             
             {/* Contact Info */}
@@ -91,8 +105,12 @@ const Index = () => {
                 <MapPin className="w-5 h-5 text-pink-400 mr-2" />
                 <span>London, UK</span>
               </div>
-              <div className="flex items-center">
-                <Mail className="w-5 h-5 text-pink-400 mr-2" />
+              <div className="flex items-center cursor-pointer hover:text-pink-300 transition-colors" onClick={copyEmail}>
+                {emailCopied ? (
+                  <Check className="w-5 h-5 text-green-400 mr-2" />
+                ) : (
+                  <Mail className="w-5 h-5 text-pink-400 mr-2" />
+                )}
                 <span>katharinajfore@gmail.com</span>
               </div>
             </div>
@@ -101,7 +119,7 @@ const Index = () => {
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <Button 
                 className="pulse-glow bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0"
-                onClick={() => window.open('https://iamkaterpillar.xyz', '_blank')}
+                onClick={() => window.open('https://www.iamkaterpillar.xyz/', '_blank')}
               >
                 <ExternalLink className="w-5 h-5 mr-2" />
                 Personal Website
@@ -109,7 +127,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200"
-                onClick={() => window.open('https://github.com/katharinafore', '_blank')}
+                onClick={() => window.open('https://github.com/iamkaterpillar', '_blank')}
               >
                 <Github className="w-5 h-5 mr-2" />
                 GitHub
@@ -117,7 +135,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200"
-                onClick={() => window.open('https://linkedin.com/in/katharinafore', '_blank')}
+                onClick={() => window.open('https://www.linkedin.com/in/katharinafore/', '_blank')}
               >
                 <Linkedin className="w-5 h-5 mr-2" />
                 LinkedIn
@@ -138,10 +156,31 @@ const Index = () => {
               <Badge 
                 key={skill} 
                 variant="secondary" 
-                className="text-lg py-2 px-4 bg-gradient-to-r from-pink-500/20 to-purple-600/20 border-pink-400/30 text-pink-200 hover:from-pink-500/30 hover:to-purple-600/30 transition-all duration-300 hover:scale-105"
+                className="text-sm py-2 px-4 bg-white/90 text-gray-900 border border-pink-400/30 hover:bg-pink-50 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 font-medium"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {skill}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Tools & Platforms Section */}
+      <div className="py-20 relative">
+        <div className="container mx-auto px-6">
+          <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
+            Tools & Platforms
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {tools.map((tool, index) => (
+              <Badge 
+                key={tool} 
+                variant="outline" 
+                className="text-sm py-2 px-4 bg-purple-100/90 text-purple-900 border border-purple-400/50 hover:bg-purple-200/90 hover:border-purple-500/60 transition-all duration-300 hover:scale-105 font-medium"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {tool}
               </Badge>
             ))}
           </div>
@@ -154,7 +193,7 @@ const Index = () => {
           <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
             Featured Projects
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {projects.map((project, index) => (
               <Card 
                 key={project.title} 
@@ -201,81 +240,11 @@ const Index = () => {
         </div>
       </div>
 
-      {/* About Section */}
-      <div className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
-              About Me
-            </h3>
-            <Card className="card-gradient border-pink-400/20">
-              <CardContent className="p-8">
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <div className="flex items-center mb-4">
-                      <Palette className="w-8 h-8 text-pink-400 mr-3" />
-                      <h4 className="text-2xl font-semibold text-pink-200">Product Leader</h4>
-                    </div>
-                    <p className="text-gray-300 mb-6 leading-relaxed">
-                      I'm a crypto-native product manager with deep experience in DeFi and trading infrastructure. 
-                      Having spent 4+ years at leading firms like Bebop and Wintermute, I've learned to navigate 
-                      the fast-paced world of digital assets while building products that scale.
-                    </p>
-                    <p className="text-gray-300 leading-relaxed">
-                      My background combines strategic consulting experience with hands-on product development. 
-                      I'm passionate about creating intuitive user experiences, leveraging data for decision-making, 
-                      and staying at the forefront of crypto, AI, and design innovations.
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-64 h-64 mx-auto bg-gradient-to-br from-pink-400 to-purple-600 rounded-full flex items-center justify-center float-animation">
-                      <Heart className="w-32 h-32 text-white" />
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Section */}
-      <div id="contact" className="py-20 relative">
-        <div className="container mx-auto px-6">
-          <h3 className="text-4xl font-bold text-center mb-12 gradient-text">
-            Let's Work Together
-          </h3>
-          <div className="max-w-2xl mx-auto text-center">
-            <p className="text-xl text-gray-300 mb-8">
-              I'm always excited to work on new projects and collaborate with amazing people. 
-              Let's create something beautiful together!
-            </p>
-            <div className="flex flex-wrap justify-center gap-6">
-              <Button 
-                className="pulse-glow bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 text-lg py-6 px-8"
-                onClick={() => window.location.href = 'mailto:katharinajfore@gmail.com'}
-              >
-                <Mail className="w-6 h-6 mr-2" />
-                Get In Touch
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200 text-lg py-6 px-8"
-                onClick={() => window.open('https://linkedin.com/in/katharinafore', '_blank')}
-              >
-                <Linkedin className="w-6 h-6 mr-2" />
-                Connect on LinkedIn
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Footer */}
       <div className="py-8 border-t border-pink-400/20">
         <div className="container mx-auto px-6">
           <div className="text-center text-gray-400">
-            <p>© 2024 Kat Fore. Made with <Heart className="w-4 h-4 inline text-pink-400" /> in London.</p>
+            <p>© 2025 Kat Fore. Made with <Heart className="w-4 h-4 inline text-pink-400" /> in London.</p>
           </div>
         </div>
       </div>
