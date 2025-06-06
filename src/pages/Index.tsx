@@ -1,9 +1,10 @@
 
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Github, Mail, MapPin, ExternalLink, Code, Sparkles, Heart, Linkedin, Check } from "lucide-react";
+import { Github, Mail, MapPin, ExternalLink, Code, Sparkles, Heart, Linkedin, Check, Twitter } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -141,6 +142,14 @@ const Index = () => {
                 <Linkedin className="w-5 h-5 mr-2" />
                 LinkedIn
               </Button>
+              <Button 
+                variant="outline" 
+                className="border-pink-400/60 text-pink-300 bg-pink-400/10 hover:bg-pink-400/20 hover:text-pink-200"
+                onClick={() => window.open('https://x.com/iamkaterpillar', '_blank')}
+              >
+                <Twitter className="w-5 h-5 mr-2" />
+                Twitter
+              </Button>
             </div>
           </div>
         </div>
@@ -264,3 +273,4 @@ const Index = () => {
 };
 
 export default Index;
+
