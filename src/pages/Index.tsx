@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -96,8 +97,7 @@ const Index = () => {
               <Sparkles className="w-6 h-6 text-pink-400 ml-2" />
             </div>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-              Crypto-native PM with 4+ years at Bebop & Wintermute. Ex-consultant with an MBA from LBS. 
-              Focused on fast execution, clean UX, and scaling great products. Exploring the future of finance across DeFi, real-world assets, and language models.
+              PM with 10+ years of experience across strategy, product, and operations. Crypto-native since 2021, with roles at Bebop and Wintermute. Ex-consultant with an MBA from LBS. Focused on fast execution, clean UX, and scaling great products. Exploring the future of finance across DeFi, real-world assets, and language models.
             </p>
             
             {/* Contact Info */}
